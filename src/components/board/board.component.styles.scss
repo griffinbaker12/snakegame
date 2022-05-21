@@ -1,0 +1,59 @@
+// Variables
+$board-color: rgb(238, 158, 171);
+
+// Board styles
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  // flex
+}
+
+.score-information {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  align-items: center;
+  margin-top: 50px;
+  // margin-bottom: 10px;
+  // height: 100px;
+}
+
+.score {
+  font-size: 50px;
+  height: 70%;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.session-score {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.board {
+  box-shadow: 0px 0px 2px 4px rgb(83, 240, 4);
+}
+
+.row {
+  height: 35px;
+}
+
+.cell {
+  color: white;
+  height: 35px;
+  width: 35px;
+  display: inline-block;
+}
+
+// Snake styles
+.snake-cell {
+  background-color: hsl(288, 90%, 53%);
+  border: 0.25vmin solid black;
+}
+
+.food-cell {
+  background-color: hsl(50, 100%, 50%);
+  border: 0.25vmin solid black;
+}
