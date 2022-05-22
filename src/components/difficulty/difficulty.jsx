@@ -1,5 +1,7 @@
 import './difficulty.scss';
 import { ReactComponent as Caret } from '../../assets/caret.svg';
+import { CSSTransition } from 'react-transition-group';
+import { Fragment } from 'react';
 
 export const Difficulty = ({
   difficulty,
@@ -15,7 +17,12 @@ export const Difficulty = ({
     >
       <div className="difficulty-content-container">
         <p>{difficulty}</p>
-        <div className="caret-container" onClick={handleDifficulty}>
+        <div
+          className={`caret-container ${
+            showDifficultyDropdown ? 'bright' : ''
+          }`}
+          onClick={handleDifficulty}
+        >
           <Caret className="caret" />
         </div>
         {showDifficultyDropdown && (
