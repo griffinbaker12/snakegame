@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { BOARD_SIZE } from '../../utils/constants';
+import { Difficulty } from '../difficulty/difficulty';
+import { BOARD_SIZE, DIFFICULTY } from '../../utils/constants';
 import { randomIntFromInterval, useInterval } from '../../utils/utils';
 import './board.component.styles.scss';
 
@@ -30,6 +31,8 @@ const Board = () => {
   const [sessionHighScore, setSessionHighScore] = useState(score);
   const [shouldChangePauseState, setShouldChangePauseState] = useState(false);
   const [paused, setPaused] = useState(false);
+  const [difficulty, setDifficulty] = useState('medium');
+  const [showDifficultyDropdown, setShowDifficultyDropdown] = useState(false);
 
   useEffect(() => {
     window.addEventListener('keydown', e => handleKeydown(e));
@@ -43,6 +46,14 @@ const Board = () => {
     if (e.key === 'ArrowDown') setClickDirection('down');
     if (e.key === ' ') setShouldChangePauseState(true);
     return;
+  };
+
+  const handleDifficulty = e => {
+    const difficulty = e.target.getAttribute('name');
+
+    if (difficulty) setDifficulty(difficulty);
+
+    setShowDifficultyDropdown(prevState => !prevState);
   };
 
   const getNewBody = snakeBody => {
@@ -128,16 +139,26 @@ const Board = () => {
 
   useInterval(() => {
     moveSnake();
-  }, 100);
+  }, DIFFICULTY[difficulty]);
 
   return (
     <div className="container">
-      <div className="score-information">
+      <div
+        className={`score-information ${
+          showDifficultyDropdown ? 'moved-container' : ''
+        }`}
+      >
         <h2 className="score">Score: {score}</h2>
         <h3 className="session-score">
           Session High Score: {sessionHighScore}
         </h3>
       </div>
+      <Difficulty
+        difficulty={difficulty}
+        handleDifficulty={handleDifficulty}
+        showDifficultyDropdown={showDifficultyDropdown}
+        setShowDifficultyDropdown={setShowDifficultyDropdown}
+      />
       <div className="board">
         {board.map((row, i) => {
           return (

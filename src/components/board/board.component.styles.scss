@@ -5,9 +5,12 @@ $board-color: rgb(238, 158, 171);
 .container {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 0px;
   align-items: center;
-  // flex
+}
+
+.moved-container {
+  transform: translateY(-15%);
 }
 
 .score-information {
@@ -16,8 +19,7 @@ $board-color: rgb(238, 158, 171);
   color: white;
   align-items: center;
   margin-top: 50px;
-  // margin-bottom: 10px;
-  // height: 100px;
+  transition: transform 500ms;
 }
 
 .score {
@@ -29,7 +31,7 @@ $board-color: rgb(238, 158, 171);
 
 .session-score {
   font-size: 20px;
-  margin-top: 10px;
+  margin-top: 6px;
 }
 
 .board {
@@ -37,7 +39,7 @@ $board-color: rgb(238, 158, 171);
 }
 
 .row {
-  height: 4vmin;
+  height: 4.2vmin;
 
   @media screen and (max-width: 600px) {
     height: 6vmin;
@@ -46,8 +48,8 @@ $board-color: rgb(238, 158, 171);
 
 .cell {
   color: white;
-  height: 4vmin;
-  width: 4vmin;
+  height: 4.2vmin;
+  width: 4.2vmin;
   display: inline-block;
 
   @media screen and (max-width: 600px) {
@@ -68,7 +70,7 @@ $board-color: rgb(238, 158, 171);
 }
 
 footer {
-  margin-top: 40px;
+  margin-top: 50px;
   color: red;
   span:first-child {
     margin-right: 10px;
