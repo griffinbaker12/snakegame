@@ -28,6 +28,8 @@ const Board = () => {
   const [foodCell, setFoodCell] = useState(snakeBody[0].cell + 5);
   const [score, setScore] = useState(0);
   const [sessionHighScore, setSessionHighScore] = useState(score);
+  const [shouldChangePauseState, setShouldChangePauseState] = useState(false);
+  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
     window.addEventListener('keydown', e => handleKeydown(e));
@@ -39,6 +41,7 @@ const Board = () => {
     if (e.key === 'ArrowLeft') setClickDirection('left');
     if (e.key === 'ArrowUp') setClickDirection('up');
     if (e.key === 'ArrowDown') setClickDirection('down');
+    if (e.key === ' ') setShouldChangePauseState(true);
     return;
   };
 
@@ -63,6 +66,22 @@ const Board = () => {
   };
 
   const moveSnake = () => {
+    if (shouldChangePauseState && !paused) {
+      setPaused(prevState => !prevState);
+      setShouldChangePauseState(false);
+    }
+
+    if (shouldChangePauseState && paused) {
+      setPaused(prevState => !prevState);
+      setShouldChangePauseState(false);
+      setScore(prevState => {
+        if (prevState < 5) return 0;
+        else return prevState - 5;
+      });
+    }
+
+    if (paused) return;
+
     let directionToSet = validClickDirection(direction, clickDirection);
     setDirection(directionToSet);
 
@@ -137,6 +156,10 @@ const Board = () => {
           );
         })}
       </div>
+      <footer>
+        <span>⭐️</span> <b>Hit space to pause (and lose 5 points!)</b>{' '}
+        <span>⭐️</span>
+      </footer>
     </div>
   );
 };
