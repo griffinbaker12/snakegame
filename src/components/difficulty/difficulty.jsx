@@ -1,13 +1,10 @@
 import './difficulty.scss';
 import { ReactComponent as Caret } from '../../assets/caret.svg';
-import { CSSTransition } from 'react-transition-group';
-import { Fragment } from 'react';
 
 export const Difficulty = ({
   difficulty,
   handleDifficulty,
   showDifficultyDropdown,
-  setShowDifficultyDropdown,
 }) => {
   return (
     <div
