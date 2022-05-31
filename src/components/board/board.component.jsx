@@ -17,7 +17,7 @@ const getStartingSnakeValue = board => {
   };
 };
 
-const Board = () => {
+const Board = ({ score, setScore, setSessionHighScore, sessionHighScore }) => {
   const [board] = useState(createBoard(BOARD_SIZE));
   const [snakeBody, setSnakeBody] = useState([getStartingSnakeValue(board)]);
   const [snakeCells, setSnakeCells] = useState(
@@ -27,8 +27,6 @@ const Board = () => {
   const [clickDirection, setClickDirection] = useState('right');
   const [snakeHead, setSnakeHead] = useState(snakeBody[0]);
   const [foodCell, setFoodCell] = useState(snakeBody[0].cell + 5);
-  const [score, setScore] = useState(0);
-  const [sessionHighScore, setSessionHighScore] = useState(score);
   const [shouldChangePauseState, setShouldChangePauseState] = useState(false);
   const [paused, setPaused] = useState(false);
   const [difficulty, setDifficulty] = useState('medium');
